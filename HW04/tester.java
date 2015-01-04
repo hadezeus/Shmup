@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 import java.io.IOException;
+import java.util.Random;
+import java.util.ArrayList;
 /**
  * Write a description of class tester here.
  * 
@@ -14,14 +16,32 @@ public class tester
 {
     public static void main(String args[])
     {
-        int[] life = new int[1000];
-        life[0] = 5;
-        life[1] = 2;
-        System.out.println(life.length);
         BufferedImage img = null;
         int width, height;
         width = 0;
         height = 0;
+        ArrayList<Integer> array = new ArrayList<Integer>();
+        for(int i = 0; i < 5; i++)
+        {
+            array.add( i);
+        }
+        for(int i = 0; i < array.size(); i++)
+        {
+            System.out.println( array.get( i) );
+        }
+        for( int i = 0; i < array.size(); i++)
+        {
+            System.out.println(i +"before removing " + array.get( i) );
+            if( array.get(i) == 0 )
+            {
+                array.remove(i);
+            }
+            System.out.println(i +"after removing " + array.get( i) );
+        }
+        for(int i = 0; i < array.size(); i++)
+        {
+            System.out.println( array.get( i) );
+        }
         try 
         {
             img = ImageIO.read(new File("fighter.bmp"));

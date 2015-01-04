@@ -1,16 +1,10 @@
 #BlueJ class context
 comment0.params=Scr_width\ Scr_height
 comment0.target=GameGui(int,\ int)
-comment1.params=e
-comment1.target=void\ keyPressed(java.awt.event.KeyEvent)
-comment2.params=e
-comment2.target=void\ keyTyped(java.awt.event.KeyEvent)
-comment3.params=e
-comment3.target=void\ keyReleased(java.awt.event.KeyEvent)
-comment4.params=bullet
-comment4.target=void\ addBul(Bullet)
-comment5.params=
-comment5.target=void\ moveBul()
-comment6.params=
-comment6.target=void\ updateScore()
-numComments=7
+comment1.params=bullet
+comment1.target=void\ addBul(Bullet)
+comment2.params=
+comment2.target=void\ moveBul()
+comment3.params=
+comment3.target=void\ updateScore()
+numComments=4

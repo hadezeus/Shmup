@@ -8,30 +8,58 @@ import java.awt.*;
  */
 public class Bullet 
 {
-    int x, y, speed, radius;
+    int x, y, radius, iteration, count, speed;
     double angle;
     Color c1;
-    public Bullet(int x, int y, double angle)
+    boolean circular, direction, stopChange;
+    
+    public Bullet(int x, int y, double angle, boolean circular, boolean direction,boolean speedMod)
     {
         this.x = x;
         this.y = y;
-        speed = 5;
+        if(speedMod)
+        {
+            speed = 5;
+        }
+        else
+            speed = 10;
         this.angle = angle;
-        radius = 40;
-        c1 = new Color( 255, 0, 0 );
+        radius = 28;
+        c1 = new Color(255, 0, 0 );
+        this.circular = circular;
+        count = 0;
+        this.direction = direction;
+        iteration = 0;
+        stopChange = false;
     }
 
     public void move()
     {
-        //if(      if the bullet is outside stage stop moving/drawing
         x = x +(int) (speed * Math.cos( angle ) );
         y = y +(int) (speed * Math.sin( angle ) );
+        if( stopChange == false)
+        {
+            count++;
+            if(circular && count%3 == 0)
+            {
+                iteration++;
+                if(iteration%7 == 0)
+                {
+                    stopChange = true;
+                }
+                count = 0;
+                if(direction)
+                    angle+=Math.PI/18;
+                else
+                    angle-=Math.PI/18;
+            }
+        }
     }
     
     public void draw( Graphics g )
     {
-        //if(
         g.setColor( c1 );
         g.fillOval( x, y, radius, radius );
     }
+    
 }

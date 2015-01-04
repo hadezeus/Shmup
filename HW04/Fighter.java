@@ -15,7 +15,6 @@ public class Fighter
     int x, y, speed, width, height, scr_width, scr_height;
     double angle;
     BufferedImage img = null;
-    
     public Fighter(int x, int y, int scr_width, int scr_height)
     {
         this.x = x;

@@ -16,7 +16,6 @@ public class GameGui extends JFrame
     JLabel score;
     Fighter fight;
     Bullet[] bul;
-    boolean start = false;
     public GameGui(int Scr_width, int Scr_height)
     {
         setLayout( new BorderLayout() );
@@ -25,9 +24,11 @@ public class GameGui extends JFrame
         add( sc, "Center");
         add( score, "East");
         fight = sc.getFight();
-        bul = sc.getBul();
-        sc.addKeyListener(new KeyListener()
-        {
+        this.addKeyListener(new keyBoard());
+        sc.addKeyListener(new keyBoard());
+    }
+    private class keyBoard implements KeyListener
+    {
             int key;
             int vert;
             int hori;
@@ -36,28 +37,23 @@ public class GameGui extends JFrame
                 key = e.getKeyCode();
                 vert = 0;
                 hori = 0;
-                start = true;
                 if (key == KeyEvent.VK_LEFT) 
                 {
-                    System.out.println("sigh");
                     hori = -1;
                 }
                 else
                 if (key == KeyEvent.VK_RIGHT) 
                 {
-                    System.out.println("sigh2");
                     hori = 1;
                 }
 
                 if (key == KeyEvent.VK_UP) 
                 {
-                    System.out.println("sigh3");
                     vert = -1;
                 }
                 else
                 if (key == KeyEvent.VK_DOWN) 
                 {
-                    System.out.println("sigh4");
                     vert = 1;
                 }
                 fight.move(hori, vert);
@@ -67,29 +63,29 @@ public class GameGui extends JFrame
             public void keyTyped(KeyEvent e)
             {
                 key = e.getKeyCode();
+                vert = 0;
+                hori = 0;
                 if (key == KeyEvent.VK_LEFT) 
                 {
-                    System.out.println("sigh");
-                    fight.move(-1, 0);
+                    hori = -1;
                 }
                 else
                 if (key == KeyEvent.VK_RIGHT) 
                 {
-                    System.out.println("sigh2");
-                    fight.move(1, 0);
+                    hori = 1;
                 }
 
                 if (key == KeyEvent.VK_UP) 
                 {
-                    System.out.println("sigh3");
-                    fight.move(0, -1);
+                    vert = -1;
                 }
                 else
                 if (key == KeyEvent.VK_DOWN) 
                 {
-                    System.out.println("sigh4");
-                    fight.move(0, 1);
+                    vert = 1;
                 }
+                fight.move(hori, vert);
+                sc.repaint();
             }
             
             public void keyReleased(KeyEvent e) 
@@ -97,7 +93,6 @@ public class GameGui extends JFrame
                 
             }
             
-        });
     }
     
     public void addBul(Bullet bullet)
@@ -115,7 +110,7 @@ public class GameGui extends JFrame
     public void updateScore()
     {
         num += sc.checkCollision();
-        
         score.setText("Score:" + num);
     }
+    
 }
